@@ -48,6 +48,11 @@
 </template>
 <script>
 import { Link } from '@inertiajs/vue3';
+import NProgress from 'nprogress'
+import { router } from '@inertiajs/vue3'
+
+router.on('start', () => NProgress.start())
+router.on('finish', () => NProgress.done())
 
 export default {
     components: {
