@@ -1,17 +1,17 @@
 <template>
-      <Link :href="route('posts.index')">Posts</Link>
-      <Link :href="route('about')">About</Link>
-      <div class="flex flex-col">
-            <h2>About Us.</h2>
-            <h2>Text About Us...</h2>
-      </div>
+      <AppLayout>
+            <div class="flex flex-col">
+                  <h2>About Us.</h2>
+                  <h2>Text About Us...</h2>
+            </div>
+      </AppLayout>
 </template>
 <script>
-import { Link } from '@inertiajs/vue3';
+import AppLayout from "../Layouts/App.vue";
 
 export default {
       components: {
-            Link
+            AppLayout
       }
 };
 </script>
