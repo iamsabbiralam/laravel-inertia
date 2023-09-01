@@ -1,11 +1,5 @@
 import "./bootstrap";
 
-// import Alpine from 'alpinejs';
-
-// window.Alpine = Alpine;
-
-// Alpine.start();
-
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 
@@ -14,6 +8,7 @@ createInertiaApp({
         const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
         return pages[`./Pages/${name}.vue`];
     },
+    title: (title) => `${title} - Laravel Inertia`,
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)

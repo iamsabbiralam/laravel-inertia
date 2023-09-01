@@ -1,4 +1,5 @@
 <template>
+      <Head title="About Us"/>
       <AppLayout>
             <div class="flex flex-col">
                   <h2>About Us.</h2>
@@ -8,10 +9,12 @@
 </template>
 <script>
 import AppLayout from "../Layouts/App.vue";
+import { Head } from "@inertiajs/vue3"
 
 export default {
       components: {
-            AppLayout
+            AppLayout,
+            Head
       }
 };
 </script>

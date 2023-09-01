@@ -1,4 +1,5 @@
 <template>
+    <Head title="Post List" />
     <AppLayout>
         <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -48,10 +49,12 @@
 </template>
 <script>
 import AppLayout from "../../Layouts/App.vue";
+import { Head } from "@inertiajs/vue3"
 
 export default {
     components: {
-        AppLayout
+        AppLayout,
+        Head
     },
     props: {
         posts: Object,
