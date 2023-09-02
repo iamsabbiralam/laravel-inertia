@@ -12,7 +12,23 @@ class PostController extends Controller
     {
         sleep(1);
         $posts = PostResource::collection(Post::all());
-
+        
         return inertia('Posts/Index', compact('posts'));
+    }
+
+    public function create()
+    {
+        return inertia('Posts/Create');
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
+        Post::create([
+            'title' => $request->title,
+            'content' => $request->content
+        ]);
+
+        return redirect()->route('posts.index');
     }
 }
