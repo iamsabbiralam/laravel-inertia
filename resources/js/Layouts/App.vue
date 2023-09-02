@@ -6,6 +6,9 @@
                               class="px-2">
                         Posts</Link>
                         <Link :href="route('about')" :class="{ 'font-bold': $page.component === 'About' }">About</Link>
+                        <div v-if="$page.props.flash.message" class="text-blue-600 mb-4">
+                              {{ $page.props.flash.message }}
+                        </div>
                         <slot />
                   </div>
             </section>

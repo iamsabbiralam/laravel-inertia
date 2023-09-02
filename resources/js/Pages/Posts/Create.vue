@@ -22,12 +22,16 @@
                                                             <input type="text" v-model="form.title"
                                                                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                                                                   placeholder="Title">
+                                                            <div v-if="errors.title" class="text-red-600">
+                                                                  {{ errors.title }}</div>
                                                       </div>
                                                       <div class="flex flex-col">
                                                             <label class="leading-loose">Content</label>
                                                             <textarea v-model="form.content"
                                                                   class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                                                                   placeholder="Content..." rows="4" cols="10"></textarea>
+                                                            <div v-if="errors.content" class="text-red-600">
+                                                                  {{ errors.content }}</div>
                                                       </div>
                                                 </div>
                                                 <div class="pt-4 flex items-center space-x-4">
@@ -42,7 +46,7 @@
                                                             Cancel
                                                       </button>
                                                       </Link>
-                                                      <button
+                                                      <button :disabled="form.processing"
                                                             class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Create</button>
                                                 </div>
                                           </div>
@@ -62,6 +66,9 @@ export default {
             AppLayout,
             Head,
             Link
+      },
+      props: {
+            errors: Object,
       },
       setup() {
             const form = useForm({

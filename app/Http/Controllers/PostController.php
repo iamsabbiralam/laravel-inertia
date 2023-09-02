@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class PostController extends Controller
     {
         sleep(1);
         $posts = PostResource::collection(Post::all());
-        
+
         return inertia('Posts/Index', compact('posts'));
     }
 
@@ -21,14 +22,12 @@ class PostController extends Controller
         return inertia('Posts/Create');
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        dd($request->all());
-        Post::create([
-            'title' => $request->title,
-            'content' => $request->content
-        ]);
+        sleep(2);
+        Post::create($request->validated());
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')
+            ->with('message', 'Post created successfully.');
     }
 }
