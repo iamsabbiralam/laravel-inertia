@@ -13,6 +13,7 @@
                         <th class="px-4 py-3">Title</th>
                         <th class="px-4 py-3">Content</th>
                         <th class="px-4 py-3">Date</th>
+                        <th class="px-4 py-3">Action</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
@@ -24,6 +25,12 @@
                         <td class="px-4 py-3 text-xs border">{{ post.content }}
                         </td>
                         <td class="px-4 py-3 text-sm border">{{ post.created_at }}</td>
+                        <td class="px-4 py-3 text-sm border">
+                            <button @click="destroy(post.id)"
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                Delete
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -33,6 +40,7 @@
 <script>
 import AppLayout from "../../Layouts/App.vue";
 import { Head, Link } from "@inertiajs/vue3"
+import { Inertia } from "@inertiajs/inertia"
 
 export default {
     components: {
@@ -43,5 +51,14 @@ export default {
     props: {
         posts: Object,
     },
+    setup() {
+        const destroy = (id) => {
+            if (confirm('Are you sure?')) {
+                Inertia.delete(route('posts.destroy', id))
+            }
+        }
+
+        return { destroy }
+    }
 };
 </script>
