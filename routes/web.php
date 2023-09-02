@@ -31,5 +31,6 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('posts', PostController::class);
 Route::inertia('about', 'About')->name('about');
+Route::inertia('login', 'Auth/Login')->name('login');
 
 require __DIR__.'/auth.php';

@@ -17,8 +17,8 @@
                                     <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">
                                         Content
                                     </th>
-                                    <th scope="col" class="px-6 py-4">Created Time</th>
-                                    <th scope="col" class="px-6 py-4">Updated Time</th>
+                                    <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500 ">Created Time</th>
+                                    <th scope="col" class="border-r px-6 py-4 dark:border-neutral-500">Updated Time</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,10 +32,10 @@
                                     <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
                                         {{ post.content }}
                                     </td>
-                                    <td class="whitespace-nowrap px-6 py-4">
+                                    <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
                                         {{ post.created_at }}
                                     </td>
-                                    <td class="whitespace-nowrap px-6 py-4">
+                                    <td class="whitespace-nowrap border-r px-6 py-4 dark:border-neutral-500">
                                         {{ post.updated_at }}
                                     </td>
                                 </tr>
