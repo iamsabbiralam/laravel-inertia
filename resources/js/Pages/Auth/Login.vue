@@ -11,30 +11,38 @@
                                     <div>
                                           <h1 class="text-2xl font-semibold">Login Form with Floating Labels</h1>
                                     </div>
-                                    <div class="divide-y divide-gray-200">
-                                          <div
-                                                class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                                <div class="relative">
-                                                      <input autocomplete="off" id="email" name="email" type="text"
-                                                            class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                            placeholder="Email address" />
-                                                      <label for="email"
-                                                            class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email
-                                                            Address</label>
-                                                </div>
-                                                <div class="relative">
-                                                      <input autocomplete="off" id="password" name="password" type="password"
-                                                            class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                            placeholder="Password" />
-                                                      <label for="password"
-                                                            class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
-                                                </div>
-                                                <div class="relative">
-                                                      <button
-                                                            class="bg-blue-500 text-white rounded-md px-2 py-1">Submit</button>
+                                    <form @submit.prevent="loginForm.post(route('login.post'))">
+                                          <div class="divide-y divide-gray-200">
+                                                <div
+                                                      class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                                                      <div class="relative">
+                                                            <input v-model="loginForm.email" autocomplete="off" id="email"
+                                                                  type="email"
+                                                                  class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                                  placeholder="Email address" />
+                                                            <label for="email"
+                                                                  class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email
+                                                                  Address</label>
+                                                            <div v-if="errors.email" class="text-red-600">
+                                                                  {{ errors.email }}</div>
+                                                      </div>
+                                                      <div class="relative">
+                                                            <input autocomplete="off" id="password"
+                                                                  v-model="loginForm.password" type="password"
+                                                                  class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                                  placeholder="Password" />
+                                                            <label for="password"
+                                                                  class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+                                                            <div v-if="errors.password" class="text-red-600">
+                                                                  {{ errors.password }}</div>
+                                                      </div>
+                                                      <div class="relative">
+                                                            <button type="submit"
+                                                                  class="bg-blue-500 text-white rounded-md px-2 py-1">Submit</button>
+                                                      </div>
                                                 </div>
                                           </div>
-                                    </div>
+                                    </form>
                               </div>
                         </div>
                   </div>
@@ -43,12 +51,23 @@
 </template>
 <script>
 import AuthLayout from "../../Layouts/Auth.vue"
-import { Head } from "@inertiajs/vue3"
+import { Head, useForm } from "@inertiajs/vue3"
 
 export default {
       components: {
             AuthLayout,
             Head
+      },
+      props: {
+            errors: Object
+      },
+      setup() {
+            const loginForm = useForm({
+                  email: '',
+                  password: ''
+            })
+
+            return { loginForm }
       }
 }
 </script>

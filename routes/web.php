@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('posts', PostController::class);
+    Route::inertia('about', 'About')->name('about');
 });
 
-Route::resource('posts', PostController::class);
-Route::inertia('about', 'About')->name('about');
 Route::inertia('login', 'Auth/Login')->name('login');
+Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
