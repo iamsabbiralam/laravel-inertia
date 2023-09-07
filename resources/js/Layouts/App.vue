@@ -10,6 +10,13 @@
                         <div v-if="$page.props.flash.message" class="text-blue-600 mb-4">
                               {{ $page.props.flash.message }}
                         </div>
+                        <div class="flex items-center">
+                              <div>
+                                    Hi, {{ $page.props.user.name }}
+                                    <br>
+                                    {{ $page.props.user.email }}
+                              </div>
+                        </div>
                         <slot />
                   </div>
             </section>
