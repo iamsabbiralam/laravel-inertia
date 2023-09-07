@@ -6,6 +6,7 @@
                               class="px-2">
                         Posts</Link>
                         <Link :href="route('about')" :class="{ 'font-bold': $page.component === 'About' }">About</Link>
+                        <Link :href="route('logout')" method="post" class="px-2">Logout</Link>
                         <div v-if="$page.props.flash.message" class="text-blue-600 mb-4">
                               {{ $page.props.flash.message }}
                         </div>

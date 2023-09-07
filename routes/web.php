@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::inertia('login', 'Auth/Login')->name('login');
-Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
+Route::post('login', [AuthenticatedSessionController::class, 'store'])
+    ->name('login.post');
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
 
 require __DIR__ . '/auth.php';
